@@ -53,7 +53,8 @@ class MyHouse extends House {
             console.log("Drzwi zostały otwarte.");
         }
         else {
-            console.log("Nieprawidłowy klucz. Drzwi pozostają zamknięte.");
+            this.door = false; // Zamknięcie drzwi w przypadku nieprawidłowego klucza
+            console.log("Nieprawidłowy klucz. Drzwi zostały zamknięte.");
         }
     }
 }
@@ -70,6 +71,8 @@ house.openDoor(person.getKey());
 // Próba wejścia do domu przez osobę
 house.comeIn(person);
 // Dodatkowy Test: Osoba z innym kluczem próbuje otworzyć drzwi
+// Zamknięcie drzwi, bo wcześniej zostały otwarte
+house.door = false; //ważne!!!!
 const anotherKey = new Key();
 const anotherPerson = new Person(anotherKey);
 // Próba otwaria drzwi za pomocą innego klucza
