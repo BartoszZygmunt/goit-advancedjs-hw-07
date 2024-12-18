@@ -1,26 +1,70 @@
 /*
-  Ви створюєте гру, де є персонажі з різними ролями.
-  Зараз ви працюєте над класом Wizard, який має реалізовувати два інтерфейси - ICharacter та ISpellCaster.
+  Tworzysz grę, w której są postacie o różnych rolach.
+  Obecnie pracujesz nad klasą Wizard, która ma implementować dwa interfejsy - ICharacter i ISpellCaster.
 
-  Визначте інтерфейси ICharacter та ISpellCaster так, щоб вони відповідали вимогам класу Wizard. 
-  Інтерфейс ICharacter повинен включати властивості name і level, і навіть метод introduce і levelUp. 
-  Інтерфейс ISpellCaster повинен включати метод castSpell.
+  Zdefiniuj interfejsy ICharacter i ISpellCaster tak, aby odpowiadały wymaganiom klasy Wizard.
+  Interfejs ICharacter powinien zawierać właściwości name i level, a także metody introduce i levelUp.
+  Interfejs ISpellCaster powinien zawierać metodę castSpell.
 */
 
 // реалізація класу Wizard
+// kod oryginalny
+// class Wizard implements ICharacter, ISpellCaster {
+//   constructor(public name: string, public level: number) {
+//     if (this.level < 1) {
+//       throw new Error("Level too low");
+//     }
+//   }
+
+//   introduce(phrase: string): void {
+//     console.log(phrase + ", " + this.name);
+//   }
+
+//   castSpell(): void {
+//     console.log("Casting a spell, behold my power!");
+//   }
+
+//   levelUp(): void {
+//     this.level++;
+//     console.log(`Level up! New level is ${this.level}`);
+//   }
+// }
+
+// // тестування класу
+// const wizard = new Wizard("Merlin", 15);
+
+// wizard.introduce("I am the mighty wizard");
+// wizard.castSpell();
+// wizard.levelUp(); // Level up! New level is 16
+
+// kod po zmianach:
+// Definicje interfejsów
+interface ICharacter {
+  name: string;
+  level: number;
+
+  introduce(phrase: string): void;
+  levelUp(): void;
+}
+
+interface ISpellCaster {
+  castSpell(): void;
+}
+
+// Implementacja klasy Wizard
 class Wizard implements ICharacter, ISpellCaster {
   constructor(public name: string, public level: number) {
     if (this.level < 1) {
-      throw new Error('Level too low');
+      throw new Error("Level too low");
     }
   }
 
   introduce(phrase: string): void {
-    console.log(phrase + ', ' + this.name);
+    console.log(`${phrase}, I am ${this.name}`);
   }
 
   castSpell(): void {
-    console.log('Casting a spell, behold my power!');
+    console.log("Casting a spell, behold my power!");
   }
 
   levelUp(): void {
@@ -29,11 +73,13 @@ class Wizard implements ICharacter, ISpellCaster {
   }
 }
 
-// тестування класу
-const wizard = new Wizard('Merlin', 15);
+// Testowanie klasy Wizard
+console.log("%cTask3:", "color: red; text-decoration: underline;");
+const wizard = new Wizard("Merlin", 15);
 
-wizard.introduce('I am the mighty wizard');
+wizard.introduce("I am the mighty wizard");
 wizard.castSpell();
-wizard.levelUp();  // Level up! New level is 16
+wizard.levelUp(); // Level up! New level is 16
+console.log("\n\n");
 
 export {};
